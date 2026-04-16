@@ -4,4 +4,5 @@ public interface Interfaces {
     public void SettingsMenu();
     public void HistoryMenu();
     public void SelectTopic();
+    public void ProgressBar();
 }

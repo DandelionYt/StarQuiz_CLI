@@ -2,12 +2,13 @@
 
 public class MainCLI{
     public static void main(String[] args)throws Exception{
-        StrInterfaces strInterfaces = new StrInterfaces();
-        strInterfaces.Menu();
-        strInterfaces.HistoryMenu();
-        strInterfaces.QuizMenu();
-        strInterfaces.SelectTopic();
-        strInterfaces.SettingsMenu();
+        StrInterfaces str = new StrInterfaces();
+        str.Menu();
+        str.HistoryMenu();
+        str.QuizMenu();
+        str.SelectTopic();
+        str.SettingsMenu();
+        str.ProgressBar();
 
     }
 

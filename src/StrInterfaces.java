@@ -9,6 +9,7 @@ public class StrInterfaces implements Interfaces{
             System.out.println("**      3> Settings          **");
             System.out.println("********************************");
             System.out.println("********************************");
+            System.out.println("********************************");
 
         }
 
@@ -50,6 +51,18 @@ public class StrInterfaces implements Interfaces{
         }
         @Override
         public void SelectTopic(){
+            System.out.println("*******************************");
+            System.out.println("**         Star Quiz         **");
+            System.out.println("*******************************");
+            System.out.println("**                           **");
+            System.out.println("**                           **");
+            System.out.println("**                           **");
+            System.out.println("********************************");
+            System.out.println("********************************");
+
+        }
+        @Override
+        public void ProgressBar(){
             System.out.println("*******************************");
             System.out.println("**         Star Quiz         **");
             System.out.println("*******************************");
