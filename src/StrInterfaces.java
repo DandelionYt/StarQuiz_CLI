@@ -54,8 +54,10 @@ public class StrInterfaces implements Interfaces{
             System.out.println("**         Star Quiz         **");
             System.out.println("*******************************");
             System.out.println("**         Choose topic      **");
-            System.out.println("**                           **");
-            System.out.println("**                           **");
+            System.out.println("**       1> Java basics      **");
+            System.out.println("**       2> OOP Concepts     **");
+            System.out.println("**       3> Data Structures  **");
+            System.out.println("**       4> Back             **");
             System.out.println("********************************");
             System.out.println("********************************");
 
