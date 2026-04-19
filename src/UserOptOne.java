@@ -4,10 +4,18 @@
     public class UserOptOne extends StrInterfaces {
         private Scanner scanner;
         private boolean running;
+        private int option;
+        private int topic;
+        private int choice;
+        private int setting;
 
         public UserOptOne() {
             this.scanner = new Scanner(System.in);
             this.running = true;
+            this.option = option;
+            this.topic = topic;
+            this.choice = choice;
+            this.setting = setting;
         }
 
         public void Start() {
@@ -20,7 +28,7 @@
 
         private void handleMenuOptions() {
             System.out.print("Enter option: ");
-            int option = scanner.nextInt();
+            option = scanner.nextInt();
             scanner.nextLine();
 
             switch (option) {
@@ -46,13 +54,13 @@
         private void handleSelectTopic() {
             SelectTopic();  // Show topic selection menu
             System.out.print("Enter topic choice (1-3) or 0 to go back: ");
-            int topic = scanner.nextInt();
+            topic = scanner.nextInt();
             scanner.nextLine();
 
             switch (topic) {
                 case 1:
                     System.out.println("Topic 1 selected: Java Basics");
-                    handleQuizMenu();
+                    handleQuizMenu(); // same method called multiple times, put it outside the scope of the switch case
                     break;
                 case 2:
                     System.out.println("Topic 2 selected: OOP Concepts");
@@ -67,20 +75,22 @@
                     break;  // Go back to main menu
                 default:
                     System.out.println("Invalid topic! Please try again");
-                    handleSelectTopic();  // Recursively ask again
+                    handleSelectTopic();  // Recursively ask again.
                     break;
             }
+//            handleQuizMenu();
         }
 
         private void handleQuizMenu() {
             QuizMenu();  // Show quiz menu
             System.out.print("Enter option (1 to start, 2 to go back): ");
-            int choice = scanner.nextInt();
+            choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
                 case 1:
                     ProgressBar();
+                    DisplayQuiz();
                     System.out.println("Quiz started! Answering questions...");
                     // Add actual quiz logic here
                     System.out.println("Quiz completed! Score: 0/0");
@@ -104,7 +114,7 @@
 
         private void handleSettings() {
             System.out.print("Enter option: ");
-            int setting = scanner.nextInt();
+            setting = scanner.nextInt();
             scanner.nextLine();
 
             switch (setting) {

@@ -5,4 +5,5 @@ public interface Interfaces {
     public void HistoryMenu();
     public void SelectTopic();
     public void ProgressBar();
+    public void DisplayQuiz();
 }

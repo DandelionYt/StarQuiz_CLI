@@ -74,4 +74,17 @@ public class StrInterfaces implements Interfaces{
             System.out.println("********************************");
 
         }
+
+         @Override
+         public void DisplayQuiz() {
+            System.out.println("*******************************");
+            System.out.println("**         Star Quiz         **");
+            System.out.println("*******************************");
+            System.out.println("**                           **");
+            System.out.println("**                           **");
+            System.out.println("**                           **");
+            System.out.println("********************************");
+            System.out.println("********************************");
+
+    }
 }
