@@ -1,16 +1,31 @@
 import java.util.Scanner;
-public class StarCore {
+
+public class StarCore implements Quiz {
 
     private Scanner scanner;
     private Timer timer;
-//        UserOptOne userOptOne = new UserOptOne();
+    private String topicName;
+    private Question[] questions;
+    private User user;
 
-    public StarCore(Scanner scanner, Timer timer) {
+    public StarCore(Scanner scanner, Timer timer, String topicName,User user) {
         this.scanner = scanner;
         this.timer = timer;
+        this.topicName = topicName;
+        this.user = user;
+
+        questions = new Question[]{
+                new Question("What is Java?",
+                        new String[]{"Language", "Car", "Food", "OS"}, 1),
+
+                new Question("What is OOP?",
+                        new String[]{"Concept", "Tool", "Game", "None"}, 1)
+        };
     }
 
-    public void runQuiz() {
+    @Override
+    public void start() {
+
         if (timer == null) {
             System.out.println("Timer not initialized!");
             return;
@@ -18,50 +33,51 @@ public class StarCore {
 
         int score = 0;
 
-        String[] questions = {
-                "What is Java?",
-                "What is OOP?"
-        };
-
-        String[][] options = {
-                {"Language", "Car", "Food", "OS"},
-                {"Concept", "Tool", "Game", "None"}
-        };
-
-        int[] answers = {1, 1};
-
         for (int i = 0; i < questions.length; i++) {
 
-            // STOP IF TIME IS UP
-            if (timer.isTimeUp()) {
-                System.out.println("\nTIME IS UP! AUTO-SUBMITTING...");
-                break;
-            }
+            if (timer.isTimeUp()) break;
 
-            System.out.println("\nTime left: " + timer.getRemainingSeconds() + "s");
+            Question q = questions[i];
 
-            System.out.println(questions[i]);
+            System.out.println("\n" + q.getText());
 
-            for (int j = 0; j < options[i].length; j++) {
-                System.out.println((j + 1) + ". " + options[i][j]);
+            String[] options = q.getOptions();
+            for (int j = 0; j < options.length; j++) {
+                System.out.println((j + 1) + ". " + options[j]);
             }
 
             System.out.print("Your answer: ");
-            int userAns = readInt();
-            if (userAns == answers[i]) {
+            int ans = readInt();
+
+            if (ans < 1 || ans > options.length) {
+                System.out.println("Invalid choice!");
+                i--;
+                continue;
+            }
+
+            if (ans == q.getCorrectAnswer()) {
                 System.out.println("✔ Correct!");
                 score++;
             } else {
-                System.out.println(" Wrong! Correct answer: " + answers[i]);
+                System.out.println("✘ Wrong! Correct answer: "
+                        + options[q.getCorrectAnswer() - 1]);
             }
         }
 
         System.out.println("\n Final Score: " + score + "/" + questions.length);
+        FileManager.saveScore(user.getUsername(), score);
+
+// ADD XP
+        int xpEarned = score * 10;
+        user.addXp(xpEarned);
+
+        System.out.println("⭐ XP gained: " + xpEarned);
+        System.out.println("🏆 Total XP: " + user.getXp());
     }
 
     private int readInt() {
         while (!scanner.hasNextInt()) {
-            System.out.println("Please enter a number!");
+            System.out.println("Enter a number!");
             scanner.next();
         }
         int val = scanner.nextInt();
@@ -69,4 +85,3 @@ public class StarCore {
         return val;
     }
 }
-

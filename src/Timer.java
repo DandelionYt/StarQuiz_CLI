@@ -2,37 +2,31 @@ public class Timer {
 
     private long endTime;
     private boolean running;
-    private Thread timerThread;
+    private Thread thread;
 
     public void start(int minutes) {
-
         endTime = System.currentTimeMillis() + (minutes * 60 * 1000L);
         running = true;
 
-        timerThread = new Thread(() -> {
-
+        thread = new Thread(() -> {
+            System.out.println("");
             while (running && !isTimeUp()) {
-
-                long remaining = getRemainingSeconds();
-                long min = remaining / 60;
-                long sec = remaining % 60;
-                System.out.println();
-                System.out.print("\r⏳ Time left: " + min + "m " + sec + "s   ");
-
+                long sec = getRemainingSeconds();
+                //System.out.println("");
+                System.out.print("\r⏳ Time left: " + sec + "s ");
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     break;
                 }
             }
-
             if (isTimeUp()) {
-                System.out.println("\n\nTIME IS UP!");
+                System.out.println("\n TIME IS UP!");
             }
         });
 
-        timerThread.setDaemon(true);
-        timerThread.start();
+        thread.setDaemon(true);
+        thread.start();
     }
 
     public boolean isTimeUp() {
